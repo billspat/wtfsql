@@ -1,0 +1,23 @@
+---
+title: "what is database software"
+---
+
+For most researchers, database software is not like other software. Frequently, it's a server. That's not like a program you run on your computer like your statistics software (R, SAS, SPSS, etc) or an image or document editor, or a calendar program or email. However there is so much variation it be confusing. The following is an explanation that I hope gives you an understanding of the mechanics to help make a decision for how you want to use SQL.
+
+Keep in mind that now, you can use SQL with a file on your computer, a database server running somewhere in your institution or on the internet, or a cloud service.
+
+Assume you have a database and it has data in it. Your goal is to get data out. The essential workflow is
+
+write the commands to query the data with the specifics of your data structure
+
+you enter the commands into a database 'client' which could be part of your existing software, or your code, or could be a program that is specifically for querying databases
+
+the client sends those commands to a database 'engine'  - often over the network using a special protocol, but could be to the engine that's on your computer.
+
+the engine interprets those commands and translates into data reading actions
+
+The engine has it's own way of keeping data in special files on disk, and over-simplistically pulls the data that's needed from those files
+
+The engine formats the output based on your configuration
+
+The engine returns the formatted output to you in some form

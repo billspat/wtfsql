@@ -1,6 +1,6 @@
 ## What They Forgot to teach you about SQL
 
-#### The real and practical guide to using databases with your data science, academic or research project
+***The real and practical guide to using databases with your data science, academic or research project* **
 
 SQL has been around for a long time, and databases are everywhere.  There is one in your phone.   There are many many good tutorials on the SQL language, and the SQL language is not hard to learn.  If that's true, then why don't we see more adoption of SQL in academia or for research data?  I believe it's not the fault of SQL but because the following  are **not** clearly explained if even discussed:
 
@@ -12,7 +12,34 @@ Most books and sites that attempt to teach you the SQL language[^1] do not talk 
 
 Note: I totally stole the idea for this name from Dr. Jenny Bryan's book "What They Forgot to Teach You About R" hosted on  https://rstats.wtf
 
-Unfortunately there is already 
+### Building
+
+This is built using [Quarto](https://quarto.org), a mark-down based literate programming system.   It uses the [Quarto 'book'](https://quarto.org/docs/books/) system (see `_quarto.yml` ) which compiles the qmd files into the `_book` folder and makes basic HTML.  
+
+
+For more information, the Quarto documentation. the code blocks use mostly R, as this currently is the only supported way that Quarto can run straight SQL in code blocks.   
+ 
+ 
+ ### install using R
+ 
+ this project uses [renv](https://rstudio.github.io/renv/articles/renv.html) to manage packages, which can be used to install 
+ 
+ ```R
+ install.packages('renv')
+ renv::restore()
+ ```
+ 
+ ### Build using R 
+ 
+ really, the quarto docs are a better place to learn about this, but I hear this is what you do: 
+ 
+ ```R
+ quarto::render()
+ ```
+
+to build the book, which runs the code in the code blocks.   
+
+
 
 
 [^1]: Ok, I know that saying SQL Language is saying "Structured Query Language Language" so sue me.  the word SQL is used also for the database server that can interpret SQL, sometimes the database instance and the box it runs on, and in the product SQL Server &trade;   So SQL Language is to clarify the L and not the server.   Feel free to use a greasemonkey script to correct that as you read.   

@@ -1,0 +1,36 @@
+---
+title: "database services"
+---
+
+
+There are many software platform and now services to help you build a database and sometimes relational.  The challenge with many of these is they make have a low-code environment but that cvan make it 
+
+
+## https://stackby.com
+
+- hides database implementation, focuses on no-code use for tabular data
+- forms creation! 
+- many other features
+- free tier is too limited for most research data
+
+
+## https://www.elephantsql.com
+
+"PostgreSQL as a Service. Perfectly configured and optimized PostgreSQL databases ready in 2 minutes."
+
+This company does one thing and does it well: Postgresql.   It provides very little interface to the db, but you avoid running any kind of server but get all the power of Postgresql
+
+- features: backups and monitoring 
+- api for creating instances (useful for devops or other auto-provisioning scripts)
+
+
+## https://aiven.io
+
+this company creates services for several data systems including RDBMS Mysql and Postgresql.  The free tier gives you a decent sized VM for a small workgroup and 5gb of storage.   If you have a 50 column table with decent size columns (255 b/column) 1 gb of storage can hold almost 100,000 rows. 
+
+## https://motherduck.com
+
+This is an interesting case and very very new.    It is based on a new, open source database engine called https://duckdb.org.   Duckdb seems like the ultimate replacement for SQLite3,but it's much more.   It is unbelievably fast for querying huge data sets.   Motherduck provides yuo with some storage space to upload files and create database out of them, and a shared notebook-like environment to run sql queries.   If you are already familar with notebooks (e.g. Jupyter notebooks), this may be the one to use! 
+
+- data entry? no
+- data injecst: yes

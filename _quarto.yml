@@ -10,7 +10,9 @@ book:
     - about.qmd
     - what_is_db_sw.qmd
     - quick_sqldf_demo.qmd
+    - db_engines.qmd
     - db_services.qmd
+    - research_db_case_studies.qmd
 
 format:
   html:

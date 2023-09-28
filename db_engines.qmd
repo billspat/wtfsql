@@ -1,0 +1,89 @@
+---
+title: "Database Engines"
+editor: 
+  mode: source
+---
+
+
+The 'engine' of the database is the heart of the server or library software.   For definition, see chapter [Database Software](what_is_db_sw.qmd).   We are categorizing engines into  in-process, server, hybrid, and cloud.  
+
+## In-Process Database Engines
+
+An 'in-process' engine is a sofware library you can use on your computer with your existing program.  There is no server required, and all computation runs on your computer.    
+
+
+### SQLite
+
+the mother of in-process db and the most ubiquotous db software in the world
+
+#### Why use?  
+
+ - You like SQL but don't have a server
+ - you want to keep multiple tabular data sets in a single file
+ - you need something lightweight
+ - you've been given a SQLite3 file
+ - you are not working in a team that needs concurrent access to edit data
+ 
+### DuckDB
+
+OMG this is so fast.   
+
+#### Why Use?
+
+- you are only doing OLAP or data processing (`select`)
+- you have a really large data set
+- you like cutting edge things
+
+
+## Server Database Engines
+
+These use the client-server computing model invented in the 1960s that we use every day.   note can run a server on your laptop for a party of 1.  
+
+### Postgresql 
+
+research leader but complicated
+Open Source
+
+### MySQL
+
+used by many web sites and easier to set up
+
+Open Source
+
+### SQL Server, Microsoft
+
+Commercial but free for many types of usage.   
+
+### Oracle
+
+comprehensive.  Expensive. Enterprise. Stay away. 
+
+The Extension to SQL are amazing
+I've use Oracle on a few projects and then 
+
+## Hybrid
+
+Ok 3 types.  these are database that can be used in-process but are known for their desktop applications, written when we all used desktop applications (e.g before Google Docs).
+
+### Microsoft Access
+
+super easy to get into, shareable using a Windows network
+
+Windows only
+
+### FileMaker
+
+kind of morphing to something else. 
+
+## Cloud Native
+
+These are database that you can only use via the cloud and will never be a product you can run on your own.   Note that almost all of the database above also offer a 'cloud' version of their software where they run a server for you so how is this different?  These DBs were designed and offered only as cloud services. 
+
+Some of these were built to manage 
+
+### Snowflake
+
+Entprise.  Competes with Oracle.   commercial.  never used it. 
+
+### Google 
+

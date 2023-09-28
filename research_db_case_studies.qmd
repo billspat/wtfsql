@@ -1,0 +1,29 @@
+---
+title: "RDBMS Case Studies"
+editor: 
+  mode: source
+---
+
+## Background
+
+How will you know if a relational database management system (RDBMS) is right for your project?  Academics tend to adopt what they see working with their colleagues.   Hence the following are short description database the author worked with, or projects the author(s) have been a part of that use datbases and the SQL language to manage their data.   
+
+
+## Portal DB
+
+DB available to download that is used for teaching.   
+
+- source: 
+- references: 
+
+
+## Mara Hyena Project 
+
+https://www.holekamplab.org/project-database.html
+
+
+
+## Project AVoCet
+
+https://avocet.integrativebiology.natsci.msu.edu
+

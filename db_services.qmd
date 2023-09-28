@@ -1,5 +1,7 @@
 ---
 title: "database services"
+editor: 
+  mode: source
 ---
 
 There are many software platform and now services to help you build a database and sometimes relational. The challenge with many of these is they make have a low-code environment but that cvan make it
@@ -30,3 +32,4 @@ This is an interesting case and very very new. It is based on a new, open source
 
 -   data entry? no
 -   data injecst: yes
+

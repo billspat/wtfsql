@@ -1,5 +1,7 @@
 ---
 title: "About"
+editor: 
+  mode: source
 ---
 
 This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1.

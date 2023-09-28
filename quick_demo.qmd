@@ -1,0 +1,65 @@
+---
+title: "The Quickest Intro Ever"
+author: "Patrick Bills"
+---
+
+This is a very fast and short demo of SQL select statements using an existing data set. .  
+
+
+```{r}
+#| echo: false
+#| output: hide
+suppressWarnings(suppressMessages(library(sqldf)))
+
+```
+
+Let's demonstrate how to use SQL on dataframe that comes with R: warpbreaks (doc).  Here is what that data look like: 
+
+```{r}
+knitr::kable(head(warpbreaks))
+```
+
+There is this awesome package that lets you use SQL statements directly on a data frame, no setup or any other changes are needed.  You just need to `install.packages('sqldf')`   The function `sqldf()` takes a string that is a SQL statement that uses an existing data frame as the table name.    You don't need to know this, but the secret of sqldf is that is silently creates and uses the dataframe in a sqlite3 database.    
+
+SQL has several commands, the the `SELECT` is most widely used and does what it says:  selects columns of data from a table and orders or groups the results.   
+
+Here is the the SQL command equivlant to R's `head()` function,using the name of a dataframe that is in the environment already 
+
+```{r}
+
+sqldf("SELECT breaks, wool, tension FROM warpbreaks LIMIT 6")
+```
+
+Note that here we are using capitalization for all SQL words only so that they are easier to read.  SQL is not case sensitive.  However the column and table names ARE case sensitive for some database flavors, so always use the same case, or even better, always use lower case when creating tables and the table column names (variables), don't use mixed case. 
+
+since there are a million tutorials on sql, let's jump straight into a summarization technique.   
+
+*What kinds of wool are there and how many rows for each kind in the `warpbreaks` data frame?*
+
+```{r}
+#| echo: true
+sql<- "SELECT wool, COUNT(wool) as n FROM warpbreaks GROUP BY wool"
+sqldf(sql)
+```
+
+Ok, two kinds of wool and a small dataset.   Note that `GROUP BY` may also sort.  This dataset has a count of `breaks` and so naturally we may want to know *What is the total of breaks per type of wool in `warpbreaks`?*   Again, the `sqldf()` function takes a string that's a swl command.   So in the code below, I've taken time to create a string variable that is a SQL statement, formatted that string in the code so it's really readable, and then use sent the sql string to the `sqldf()` command.  You don't have to do it that way, it's just easier to read for this demo.  SQL ignores all whitespace other than single spaces.  
+
+```{r}
+#| label: break-tbl
+#| tbl-cap: "Warp Break Summary"
+#| tbl-colwidths: [30,30,30]
+sql<- "SELECT 
+          wool as 'wool type', 
+          sum(breaks) as 'total breaks', 
+          count(wool) as n 
+      FROM warpbreaks 
+      GROUP BY wool
+"
+
+break_summary <- sqldf(sql)
+knitr::kable(break_summary)
+```
+
+
+
+So far, SQL does not seem any more capable than Pandas (for Python) or dplyr, data.tables or other R libs, does it??  And as a language, maybe it isn't.  The real power is with Joins and that will require a more advanced data set. 

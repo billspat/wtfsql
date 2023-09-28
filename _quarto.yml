@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "sql4science"
+  title: "What they Forgot to teach about SQL"
   author: "Patrick Bills"
   date: "9/24/2023"
   chapters:
@@ -14,7 +14,7 @@ book:
 
 format:
   html:
-    theme: spaceman
+    theme: journal
     css: styles.css
     toc: true
 

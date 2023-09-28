@@ -8,8 +8,9 @@ book:
   chapters:
     - index.qmd
     - about.qmd
-    - quick_demo.qmd
     - what_is_db_sw.qmd
+    - quick_sqldf_demo.qmd
+    - db_services.qmd
 
 format:
   html:

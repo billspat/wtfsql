@@ -14,17 +14,45 @@
     "text": "This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1."
   },
   {
-    "objectID": "quick_demo.html",
-    "href": "quick_demo.html",
-    "title": "3  The Quickest Intro Ever",
+    "objectID": "what_is_db_sw.html",
+    "href": "what_is_db_sw.html",
+    "title": "3  what is database software",
+    "section": "",
+    "text": "For most researchers, database software is not like other software. Frequently, it’s a server. That’s not like a program you run on your computer like your statistics software (R, SAS, SPSS, etc) or an image or document editor, or a calendar program or email. However there is so much variation it be confusing. The following is an explanation that I hope gives you an understanding of the mechanics to help make a decision for how you want to use SQL.\nKeep in mind that now, you can use SQL with a file on your computer, a database server running somewhere in your institution or on the internet, or a cloud service.\nAssume you have a database and it has data in it. Your goal is to get data out. The essential workflow is\nwrite the commands to query the data with the specifics of your data structure\nyou enter the commands into a database ‘client’ which could be part of your existing software, or your code, or could be a program that is specifically for querying databases\nthe client sends those commands to a database ‘engine’ - often over the network using a special protocol, but could be to the engine that’s on your computer.\nthe engine interprets those commands and translates into data reading actions\nThe engine has it’s own way of keeping data in special files on disk, and over-simplistically pulls the data that’s needed from those files\nThe engine formats the output based on your configuration\nThe engine returns the formatted output to you in some form"
+  },
+  {
+    "objectID": "quick_sqldf_demo.html",
+    "href": "quick_sqldf_demo.html",
+    "title": "4  The Quickest Intro Ever",
     "section": "",
     "text": "This is a very fast and short demo of SQL select statements using an existing data set. .\nLet’s demonstrate how to use SQL on dataframe that comes with R: warpbreaks (doc). Here is what that data look like:\n\nknitr::kable(head(warpbreaks))\n\n\n\n\nbreaks\nwool\ntension\n\n\n\n\n26\nA\nL\n\n\n30\nA\nL\n\n\n54\nA\nL\n\n\n25\nA\nL\n\n\n70\nA\nL\n\n\n52\nA\nL\n\n\n\n\n\nThere is this awesome package that lets you use SQL statements directly on a data frame, no setup or any other changes are needed. You just need to install.packages('sqldf') The function sqldf() takes a string that is a SQL statement that uses an existing data frame as the table name. You don’t need to know this, but the secret of sqldf is that is silently creates and uses the dataframe in a sqlite3 database.\nSQL has several commands, the the SELECT is most widely used and does what it says: selects columns of data from a table and orders or groups the results.\nHere is the the SQL command equivlant to R’s head() function,using the name of a dataframe that is in the environment already\n\nsqldf(\"SELECT breaks, wool, tension FROM warpbreaks LIMIT 6\")\n\n  breaks wool tension\n1     26    A       L\n2     30    A       L\n3     54    A       L\n4     25    A       L\n5     70    A       L\n6     52    A       L\n\n\nNote that here we are using capitalization for all SQL words only so that they are easier to read. SQL is not case sensitive. However the column and table names ARE case sensitive for some database flavors, so always use the same case, or even better, always use lower case when creating tables and the table column names (variables), don’t use mixed case.\nsince there are a million tutorials on sql, let’s jump straight into a summarization technique.\nWhat kinds of wool are there and how many rows for each kind in the warpbreaks data frame?\n\nsql&lt;- \"SELECT wool, COUNT(wool) as n FROM warpbreaks GROUP BY wool\"\nsqldf(sql)\n\n  wool  n\n1    A 27\n2    B 27\n\n\nOk, two kinds of wool and a small dataset. Note that GROUP BY may also sort. This dataset has a count of breaks and so naturally we may want to know What is the total of breaks per type of wool in warpbreaks? Again, the sqldf() function takes a string that’s a swl command. So in the code below, I’ve taken time to create a string variable that is a SQL statement, formatted that string in the code so it’s really readable, and then use sent the sql string to the sqldf() command. You don’t have to do it that way, it’s just easier to read for this demo. SQL ignores all whitespace other than single spaces.\n\nsql&lt;- \"SELECT \n          wool as 'wool type', \n          sum(breaks) as 'total breaks', \n          count(wool) as n \n      FROM warpbreaks \n      GROUP BY wool\n\"\n\nbreak_summary &lt;- sqldf(sql)\nknitr::kable(break_summary)\n\n\nWarp Break Summary \n\n\n\n\n\n\n\nwool type\ntotal breaks\nn\n\n\n\n\nA\n838\n27\n\n\nB\n682\n27\n\n\n\n\n\nSo far, SQL does not seem any more capable than Pandas (for Python) or dplyr, data.tables or other R libs, does it?? And as a language, maybe it isn’t. The real power is with Joins and that will require a more advanced data set."
   },
   {
-    "objectID": "what_is_db_sw.html",
-    "href": "what_is_db_sw.html",
-    "title": "4  what is database software",
-    "section": "",
-    "text": "For most researchers, database software is not like other software. Frequently, it’s a server. That’s not like a program you run on your computer like your statistics software (R, SAS, SPSS, etc) or an image or document editor, or a calendar program or email. However there is so much variation it be confusing. The following is an explanation that I hope gives you an understanding of the mechanics to help make a decision for how you want to use SQL.\nKeep in mind that now, you can use SQL with a file on your computer, a database server running somewhere in your institution or on the internet, or a cloud service.\nAssume you have a database and it has data in it. Your goal is to get data out. The essential workflow is\nwrite the commands to query the data with the specifics of your data structure\nyou enter the commands into a database ‘client’ which could be part of your existing software, or your code, or could be a program that is specifically for querying databases\nthe client sends those commands to a database ‘engine’ - often over the network using a special protocol, but could be to the engine that’s on your computer.\nthe engine interprets those commands and translates into data reading actions\nThe engine has it’s own way of keeping data in special files on disk, and over-simplistically pulls the data that’s needed from those files\nThe engine formats the output based on your configuration\nThe engine returns the formatted output to you in some form"
+    "objectID": "db_services.html#httpsstackby.com",
+    "href": "db_services.html#httpsstackby.com",
+    "title": "5  database services",
+    "section": "5.1 https://stackby.com",
+    "text": "5.1 https://stackby.com\n\nhides database implementation, focuses on no-code use for tabular data\nforms creation!\nmany other features\nfree tier is too limited for most research data"
+  },
+  {
+    "objectID": "db_services.html#httpswww.elephantsql.com",
+    "href": "db_services.html#httpswww.elephantsql.com",
+    "title": "5  database services",
+    "section": "5.2 https://www.elephantsql.com",
+    "text": "5.2 https://www.elephantsql.com\n“PostgreSQL as a Service. Perfectly configured and optimized PostgreSQL databases ready in 2 minutes.”\nThis company does one thing and does it well: Postgresql. It provides very little interface to the db, but you avoid running any kind of server but get all the power of Postgresql\n\nfeatures: backups and monitoring\napi for creating instances (useful for devops or other auto-provisioning scripts)"
+  },
+  {
+    "objectID": "db_services.html#httpsaiven.io",
+    "href": "db_services.html#httpsaiven.io",
+    "title": "5  database services",
+    "section": "5.3 https://aiven.io",
+    "text": "5.3 https://aiven.io\nthis company creates services for several data systems including RDBMS Mysql and Postgresql. The free tier gives you a decent sized VM for a small workgroup and 5gb of storage. If you have a 50 column table with decent size columns (255 b/column) 1 gb of storage can hold almost 100,000 rows."
+  },
+  {
+    "objectID": "db_services.html#httpsmotherduck.com",
+    "href": "db_services.html#httpsmotherduck.com",
+    "title": "5  database services",
+    "section": "5.4 https://motherduck.com",
+    "text": "5.4 https://motherduck.com\nThis is an interesting case and very very new. It is based on a new, open source database engine called https://duckdb.org. Duckdb seems like the ultimate replacement for SQLite3,but it’s much more. It is unbelievably fast for querying huge data sets. Motherduck provides yuo with some storage space to upload files and create database out of them, and a shared notebook-like environment to run sql queries. If you are already familar with notebooks (e.g. Jupyter notebooks), this may be the one to use!\n\ndata entry? no\ndata injecst: yes"
   }
 ]

@@ -9,7 +9,7 @@
 <meta name="author" content="Patrick Bills">
 <meta name="dcterms.date" content="2023-09-24">
 
-<title>sql4science</title>
+<title>What they Forgot to teach about SQL, or sql4research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">sql4science</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -125,7 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">sql4science</a> 
+      <a href="./">What they Forgot to teach about SQL, or sql4research</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -138,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">sql4science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -171,14 +137,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#motivation-sql-is-everywhere-except-in-data-science." id="toc-motivation-sql-is-everywhere-except-in-data-science." class="nav-link active" data-scroll-target="#motivation-sql-is-everywhere-except-in-data-science."><span class="header-section-number">1</span> Motivation: SQL is everywhere, except in data science.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">sql4science</h1>
+<h1 class="title">What they Forgot to teach about SQL, or sql4research</h1>
 </div>
 
 
@@ -205,25 +177,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="motivation-sql-is-everywhere-except-in-data-science." class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Motivation: SQL is everywhere, except in data science.</h1>
 <p>Researchers in all disciplines have to manage tremendous amounts of data, but many have large collection of files of various formats such as CSV text files, spreadsheets, lists, even images, maps, movies, etc.</p>
 <p>We’ve heard of database and of the SQL language that works with databases and want to learn more.</p>
 <p>SQL is the common language used to interact with “Relational” databases. Relational database excel at organizing tabular data and reading data from it at unbelievable speed.</p>
-<p>The goal of this book is to provide all the background information someone doing research in any field (sciences or humanities). Not all academic work is ‘research’ but nonetheless could use a system to quickly query a large colleciton of information to find or summarize. A library card catalog for example is an extermely helpful database. Faculty, staff and students don’t have time or resoruces to purchase commerical database systems. There are many many introductions to the SQL language which focus on pulling data from it. Few provide the complete picture of exactly what you need to complete your research. How do you create the database to hold your information, and how to get your information into the database. Some of focused on a specific brand of database but that may not be the best fit for what you need to accomplish.</p>
-<p>Some of the questions academic left to answer are:</p>
-<p>Database seem great to query my data, but how do I get my data into a database in the first place?</p>
+<p>The goal of this book is to provide all the background information someone doing research in any field (sciences or humanities). Not all academic work is ‘research’ but nonetheless could use a system to quickly query a large colleciton of information to find or summarize. A library card catalog for example is an extremely helpful database. Faculty, staff and students don’t have time or resources to purchase commercial database systems. There are many many introductions to the SQL language which focus on pulling data from it. Few provide the complete picture of exactly what you need to complete your research. How do you create the database to hold your information, and how to get your information into the database. Some of focused on a specific brand of database but that may not be the best fit for what you need to accomplish.</p>
+<p>SQL has been around for a long time, and databases are everywhere. There is one in your phone. There are many many good tutorials on the SQL language, and the SQL language is not hard to learn. If that’s true, then why don’t we see more adoption of SQL in academia or for research data? I believe it’s not the fault of SQL but because the following are not clearly explained if even discussed:</p>
+<ul>
+<li>how to model data using the linked tables (the relational model)</li>
+<li>understanding what a data server is and how to maintain one for your work group for collaboration</li>
+<li>if the data is not from an instrument or must be edited manually (as some portion of most of our data is), how to get the data in to the database or even harder, a standard data entry process. Some of the questions academic left to answer are:</li>
+</ul>
+<p>Data entry seems to be the topic no one wants to talk about in data science. Database seem like a fantastic tool for quering your data, but how do you get your data into a database in the first place? Researchers frequently need to carefully curate data they collect, even if it’s from a machine.</p>
 <p>How can I enter data as I am collecting it into a database.</p>
 <p>How can I use a database only on my laptop without having to purcahse any other hardware? That is, do I need a server? How much will everything cost? What are some really low cost ways to to share my data with my collaborators with with the world?</p>
 <p>How can I share the database with my collaborators?</p>
 <p>Can multiple people use the database at the same time, or could have some helpers entering data while others are reading data?</p>
 <p>What are some guidelines for building a database structure for my data?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

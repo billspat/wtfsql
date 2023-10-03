@@ -1,0 +1,19 @@
+---
+title: "Example: Which are the cloudiest cities in the US?"
+editor: 
+  mode: source
+---
+
+This is a walk through of a case-study for determining a problem/question, designing the database to answer the question, pulling data into a database, and answering the question.
+
+I often hear that my city (Lansing, MI) is 2nd cloudiest in teh country.  Then I heard the same thing from another city (I don't recall which).  who doesn't like a sunny day?  So which are the cloudiest cities in the country?
+
+### Data Sources
+
+Awesome Cities data: https://github.com/kelvins/US-Cities-Database
+
+Weather data via Python <https://github.com/meteostat/meteostat-python> provide via [Creative Commons Attribution-NonCommercial 4.0 International Public License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/legalcode).  [Blog post on MeteoStat](https://meteostat.net/en/blog/obtain-weather-data-any-location-python)
+
+### Download and manage
+
+TBW

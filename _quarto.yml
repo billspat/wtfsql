@@ -13,6 +13,7 @@ book:
     - db_engines.qmd
     - db_services.qmd
     - primary_keys.qmd
+    - example_cloudiest_us_cities.qmd
     - research_db_case_studies.qmd
 
 format:

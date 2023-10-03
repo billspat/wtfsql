@@ -23,6 +23,7 @@ the mother of in-process db and the most ubiquotous db software in the world
  - you need something lightweight
  - you've been given a SQLite3 file
  - you are not working in a team that needs concurrent access to edit data
+ - you want to use a ["Modern Data Stack (MDS) in-a-box"]( https://www.dataduel.co/modern-data-stack-in-a-box-with-duckdb/)
  
 ### DuckDB
 

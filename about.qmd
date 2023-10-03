@@ -5,3 +5,31 @@ editor:
 ---
 
 This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1.
+
+### List of Technology Used:
+
+Quarto: https://quarto.org markdown with active code blocks, used to write this book.  
+
+SQLite: https://sqlite.org/index.html 
+
+DuckDB: NextGen Analytical Database : https://duckdb.org
+
+R API for DuckDB : https://duckdb.org/docs/api/r.html 
+
+SQLDF : https://github.com/ggrothendieck/sqldf an R package for easily running SQL statements on R data frames
+
+Most R-Database packages are based on the the R DBI interface:
+
+https://cran.r-project.org/web/packages/DBI/index.html
+
+Quarto SQL extension for SQLite: https://github.com/shafayetShafee/interactive-sql  (and SQLite only)
+
+R dbPlyr: https://dbplyr.tidyverse.org the database backend for [dplyr](https://dplyr.tidyverse.org).  This library is not SQL, but it is another approach to pulling data from tabular data.  
+
+
+### How the technology above is used: 
+
+to be written...
+
+
+

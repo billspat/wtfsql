@@ -12,6 +12,7 @@ book:
     - quick_sqldf_demo.qmd
     - db_engines.qmd
     - db_services.qmd
+    - primary_keys.qmd
     - research_db_case_studies.qmd
 
 format:

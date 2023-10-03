@@ -1,0 +1,79 @@
+---
+title: "primary key"
+code-tools: true
+filters:
+  - interactive-sql
+databases:
+  - name: hr
+    path: "https://raw.githubusercontent.com/shafayetShafee/interactive-sql/main/hr.sql"
+    editable: false
+editor: 
+  mode: source
+---
+
+## About Primary Keys for database design
+
+
+SQL databases have tables, and a major feature of these tables is that one (or more) columns (aka fields) are 'keys' to the rows in the datbase.  Given the values for the key, you can find the exactly one row that matches.  For example, bank account number refers to only one bank account.  Bank account and bank account number have 1-1 relationship.    That would work for an 'accounts' table, but not for a  table of transactions where the account number appears multiple times, or for a people table, where an account could be shared.   
+
+The primary key the one key used by the db to indentify the table. Most tables have a primary key.   It's not required, but a table is harder to work with (and often slower) if there is no primary key.   
+
+Most databases, tutorials, and database auto-creation software with always create a new special field in a table called "id" and make that field have a sequence number.  More why later, but go with that.  For now a 
+
+<!-- requires this extension be installed for quarto to run https://github.com/shafayetShafee/interactive-sql -->
+
+## Motivating Example
+
+``` {.sql .interactive .hr}
+SELECT first_name, last_name, job_id 
+FROM employees 
+WHERE salary > 10000
+LIMIT 10;
+```
+
+Ok but what are the jobs that pay? The database was designed to join employees to jobs using a job_id.  Let's join the tables and see.  
+
+``` {.sql .interactive .hr}
+SELECT employees.first_name, employees.last_name, jobs.job_title, jobs.job_id
+FROM 
+   employees INNER JOIN jobs 
+   ON employees.job_id = jobs.job_id
+WHERE salary > 10000
+LIMIT 10;
+```
+
+Some important things to note here.
+
+1. job_id appears in two tables, so we must prepend the field name with the table name table.field.  Most SQL will deal if you don't include the table names but if it's ambiguous (as in this example) if will not run with varioubs rns
+1.  The job id is the key for the table not has no meaning. Note that is not sequential. President is job_id 4, Accounting Manager is job_id 2. The 'job_id' in jobs table is what we call the 'key' and in fact the main key so we call it the 'primary key'
+
+### It's really hard to change a primary key after the fact
+
+Databases can quickly have 10, a dozen, then a couple of dozen tables, joined in various ways.   Any time you have to change the value of a primary key, you must change the values of all of the foreign keys or linked tables.   that is frequently a manual process to be avoided.    Read below for ways to avoid.  
+
+### Scale your primary key well.  
+
+ Sometimes numeric IDs have a starting value so it doesn've leading zeros, like 10000001.  This can really help wiht printing since the output always takes up the same amount of space (on a label for example).  If these are always numbers the maximum number of records in this example would be just shy of 100 million (99,999,999).  Is that enough records for that table?   If not we could later convert to alpha-number and start using letters for numbers, or do what my university did, and add a letter at the front.   For example A99999999, and now you have 26 * 100 Million or 2.6 billion.   that will hold off obsolences- for a while.   Finding all the places where that ID is used in table and changing to have a letter in the front is a daunting task for a reasonably complex database.
+ 
+>**Case study**: Pollinator database.   I designed a DB that 5 digit ID, 99,999 possible values for printing on a
+>teeny tiny insect pin label.     The project was supposed to last one, maybe 3 years I assumed or maybe was told?
+>How many bees could they pin?   Six years later they called me when the 100,000 bee was collected and the labels
+>no longer printed correctly.   The database was MySQL and the design (schema) used MySQL type 'bigint'for primary keys, which went could hold 2<sup>64</sup> values. the database didn't run out of IDs, they did run out of space on the label.   
+
+
+### Primary Keys should have no meaning
+
+It's important that primary keys have no meaning. That is so they are never changed. The only function of a key is to join two tables together. A primary key could be some randome number as long it was guaranteed to be unique in that table. We can't have two job_ids = 2. We pick a unique number when we insert new records. Jobs are added as we think of them at first, or when they are created for the company. One easy way to make them unique is to use a sequence generator, and pick the next highest number in the sequence.
+
+#### Deleting a record form a primary key table
+
+If a job is deleted then employees with that job_id now points to nothing.   Not good and could possibly crash whatever app or script uses that database.    We will call the table with the primary key the 'primary table' and others the linked tables.  The process is
+
+1. identify all the tables that link to the pirmary table, call them linked tables
+2. in each linked table, find all the records that use the key you want to delete.  For example, if deleting job_id = 4, find all records that have thie
+3. change those keys to something else.  Some database designs do not allow blank foreign keys.   All employees have to have a job, why would it ever be blank?  if that something does not exist yet, there could be a problem on a production database.  If you only want to edit the primate key (not delete the records), one way to deal with that is to create a temporary item with a dummy key 0000 "job placeholder."    Another way is to  set the job_id  blank (Null).    
+
+4. Now that all the foreign keys are no longer pointing to that primary key value, you can change it to whatever you need to 
+5. update all the foreign keys to point to that number.  
+6.  why not just change the key then change all the records? this violates referential integrity and if the database is being used (for example in production) that would be a problem. 
+

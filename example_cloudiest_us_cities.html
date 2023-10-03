@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What they Forgot to teach about SQL - 2&nbsp; About</title>
+<title>What they Forgot to teach about SQL - 8&nbsp; Example: Which are the cloudiest cities in the US?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./what_is_db_sw.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./research_db_case_studies.html" rel="next">
+<link href="./primary_keys.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./example_cloudiest_us_cities.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example: Which are the cloudiest cities in the US?</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link active">
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></span></a>
   </div>
 </li>
@@ -144,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./example_cloudiest_us_cities.html" class="sidebar-item-text sidebar-link">
+  <a href="./example_cloudiest_us_cities.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example: Which are the cloudiest cities in the US?</span></span></a>
   </div>
 </li>
@@ -164,8 +164,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#list-of-technology-used" id="toc-list-of-technology-used" class="nav-link active" data-scroll-target="#list-of-technology-used"><span class="header-section-number">2.0.1</span> List of Technology Used:</a></li>
-  <li><a href="#how-the-technology-above-is-used" id="toc-how-the-technology-above-is-used" class="nav-link" data-scroll-target="#how-the-technology-above-is-used"><span class="header-section-number">2.0.2</span> How the technology above is used:</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link active" data-scroll-target="#data-sources"><span class="header-section-number">8.0.1</span> Data Sources</a></li>
+  <li><a href="#download-and-manage" id="toc-download-and-manage" class="nav-link" data-scroll-target="#download-and-manage"><span class="header-section-number">8.0.2</span> Download and manage</a></li>
   </ul>
 </nav>
     </div>
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example: Which are the cloudiest cities in the US?</span></h1>
 </div>
 
 
@@ -189,22 +189,16 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1.</p>
-<section id="list-of-technology-used" class="level3" data-number="2.0.1">
-<h3 data-number="2.0.1" class="anchored" data-anchor-id="list-of-technology-used"><span class="header-section-number">2.0.1</span> List of Technology Used:</h3>
-<p>Quarto: https://quarto.org markdown with active code blocks, used to write this book.</p>
-<p>SQLite: https://sqlite.org/index.html</p>
-<p>DuckDB: NextGen Analytical Database : https://duckdb.org</p>
-<p>R API for DuckDB : https://duckdb.org/docs/api/r.html</p>
-<p>SQLDF : https://github.com/ggrothendieck/sqldf an R package for easily running SQL statements on R data frames</p>
-<p>Most R-Database packages are based on the the R DBI interface:</p>
-<p>https://cran.r-project.org/web/packages/DBI/index.html</p>
-<p>Quarto SQL extension for SQLite: https://github.com/shafayetShafee/interactive-sql (and SQLite only)</p>
-<p>R dbPlyr: https://dbplyr.tidyverse.org the database backend for <a href="https://dplyr.tidyverse.org">dplyr</a>. This library is not SQL, but it is another approach to pulling data from tabular data.</p>
+<p>This is a walk through of a case-study for determining a problem/question, designing the database to answer the question, pulling data into a database, and answering the question.</p>
+<p>I often hear that my city (Lansing, MI) is 2nd cloudiest in teh country. Then I heard the same thing from another city (I don’t recall which). who doesn’t like a sunny day? So which are the cloudiest cities in the country?</p>
+<section id="data-sources" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">8.0.1</span> Data Sources</h3>
+<p>Awesome Cities data: https://github.com/kelvins/US-Cities-Database</p>
+<p>Weather data via Python <a href="https://github.com/meteostat/meteostat-python" class="uri">https://github.com/meteostat/meteostat-python</a> provide via <a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode">Creative Commons Attribution-NonCommercial 4.0 International Public License (CC BY-NC 4.0)</a>. <a href="https://meteostat.net/en/blog/obtain-weather-data-any-location-python">Blog post on MeteoStat</a></p>
 </section>
-<section id="how-the-technology-above-is-used" class="level3" data-number="2.0.2">
-<h3 data-number="2.0.2" class="anchored" data-anchor-id="how-the-technology-above-is-used"><span class="header-section-number">2.0.2</span> How the technology above is used:</h3>
-<p>to be written…</p>
+<section id="download-and-manage" class="level3" data-number="8.0.2">
+<h3 data-number="8.0.2" class="anchored" data-anchor-id="download-and-manage"><span class="header-section-number">8.0.2</span> Download and manage</h3>
+<p>TBW</p>
 
 
 </section>
@@ -445,13 +439,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What they forgot to teach you about SQL: introduction</span></span>
+      <a href="./primary_keys.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">primary key</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./what_is_db_sw.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">what is database software</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./research_db_case_studies.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RDBMS Case Studies</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What they Forgot to teach about SQL - 2&nbsp; About</title>
+<title>What they Forgot to teach about SQL - 9&nbsp; RDBMS Case Studies</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./what_is_db_sw.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./example_cloudiest_us_cities.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./research_db_case_studies.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RDBMS Case Studies</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -108,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link active">
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></span></a>
   </div>
 </li>
@@ -150,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./research_db_case_studies.html" class="sidebar-item-text sidebar-link">
+  <a href="./research_db_case_studies.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RDBMS Case Studies</span></span></a>
   </div>
 </li>
@@ -164,8 +163,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#list-of-technology-used" id="toc-list-of-technology-used" class="nav-link active" data-scroll-target="#list-of-technology-used"><span class="header-section-number">2.0.1</span> List of Technology Used:</a></li>
-  <li><a href="#how-the-technology-above-is-used" id="toc-how-the-technology-above-is-used" class="nav-link" data-scroll-target="#how-the-technology-above-is-used"><span class="header-section-number">2.0.2</span> How the technology above is used:</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">9.1</span> Background</a></li>
+  <li><a href="#portal-db" id="toc-portal-db" class="nav-link" data-scroll-target="#portal-db"><span class="header-section-number">9.2</span> Portal DB</a></li>
+  <li><a href="#mara-hyena-project" id="toc-mara-hyena-project" class="nav-link" data-scroll-target="#mara-hyena-project"><span class="header-section-number">9.3</span> Mara Hyena Project</a></li>
+  <li><a href="#project-avocet" id="toc-project-avocet" class="nav-link" data-scroll-target="#project-avocet"><span class="header-section-number">9.4</span> Project AVoCet</a></li>
   </ul>
 </nav>
     </div>
@@ -174,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RDBMS Case Studies</span></h1>
 </div>
 
 
@@ -189,22 +190,25 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1.</p>
-<section id="list-of-technology-used" class="level3" data-number="2.0.1">
-<h3 data-number="2.0.1" class="anchored" data-anchor-id="list-of-technology-used"><span class="header-section-number">2.0.1</span> List of Technology Used:</h3>
-<p>Quarto: https://quarto.org markdown with active code blocks, used to write this book.</p>
-<p>SQLite: https://sqlite.org/index.html</p>
-<p>DuckDB: NextGen Analytical Database : https://duckdb.org</p>
-<p>R API for DuckDB : https://duckdb.org/docs/api/r.html</p>
-<p>SQLDF : https://github.com/ggrothendieck/sqldf an R package for easily running SQL statements on R data frames</p>
-<p>Most R-Database packages are based on the the R DBI interface:</p>
-<p>https://cran.r-project.org/web/packages/DBI/index.html</p>
-<p>Quarto SQL extension for SQLite: https://github.com/shafayetShafee/interactive-sql (and SQLite only)</p>
-<p>R dbPlyr: https://dbplyr.tidyverse.org the database backend for <a href="https://dplyr.tidyverse.org">dplyr</a>. This library is not SQL, but it is another approach to pulling data from tabular data.</p>
+<section id="background" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="background"><span class="header-section-number">9.1</span> Background</h2>
+<p>How will you know if a relational database management system (RDBMS) is right for your project? Academics tend to adopt what they see working with their colleagues. Hence the following are short description database the author worked with, or projects the author(s) have been a part of that use datbases and the SQL language to manage their data.</p>
 </section>
-<section id="how-the-technology-above-is-used" class="level3" data-number="2.0.2">
-<h3 data-number="2.0.2" class="anchored" data-anchor-id="how-the-technology-above-is-used"><span class="header-section-number">2.0.2</span> How the technology above is used:</h3>
-<p>to be written…</p>
+<section id="portal-db" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="portal-db"><span class="header-section-number">9.2</span> Portal DB</h2>
+<p>DB available to download that is used for teaching.</p>
+<ul>
+<li>source:</li>
+<li>references:</li>
+</ul>
+</section>
+<section id="mara-hyena-project" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="mara-hyena-project"><span class="header-section-number">9.3</span> Mara Hyena Project</h2>
+<p>https://www.holekamplab.org/project-database.html</p>
+</section>
+<section id="project-avocet" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="project-avocet"><span class="header-section-number">9.4</span> Project AVoCet</h2>
+<p>https://avocet.integrativebiology.natsci.msu.edu</p>
 
 
 </section>
@@ -445,14 +449,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What they forgot to teach you about SQL: introduction</span></span>
+      <a href="./example_cloudiest_us_cities.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example: Which are the cloudiest cities in the US?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./what_is_db_sw.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">what is database software</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

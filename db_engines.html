@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What they Forgot to teach about SQL - 2&nbsp; About</title>
+<title>What they Forgot to teach about SQL - 5&nbsp; Database Engines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./what_is_db_sw.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./db_services.html" rel="next">
+<link href="./quick_sqldf_demo.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./db_engines.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Database Engines</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link active">
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></span></a>
   </div>
 </li>
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./db_engines.html" class="sidebar-item-text sidebar-link">
+  <a href="./db_engines.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Database Engines</span></span></a>
   </div>
 </li>
@@ -164,8 +164,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#list-of-technology-used" id="toc-list-of-technology-used" class="nav-link active" data-scroll-target="#list-of-technology-used"><span class="header-section-number">2.0.1</span> List of Technology Used:</a></li>
-  <li><a href="#how-the-technology-above-is-used" id="toc-how-the-technology-above-is-used" class="nav-link" data-scroll-target="#how-the-technology-above-is-used"><span class="header-section-number">2.0.2</span> How the technology above is used:</a></li>
+  <li><a href="#in-process-database-engines" id="toc-in-process-database-engines" class="nav-link active" data-scroll-target="#in-process-database-engines"><span class="header-section-number">5.1</span> In-Process Database Engines</a>
+  <ul class="collapse">
+  <li><a href="#sqlite" id="toc-sqlite" class="nav-link" data-scroll-target="#sqlite"><span class="header-section-number">5.1.1</span> SQLite</a></li>
+  <li><a href="#duckdb" id="toc-duckdb" class="nav-link" data-scroll-target="#duckdb"><span class="header-section-number">5.1.2</span> DuckDB</a></li>
+  </ul></li>
+  <li><a href="#server-database-engines" id="toc-server-database-engines" class="nav-link" data-scroll-target="#server-database-engines"><span class="header-section-number">5.2</span> Server Database Engines</a>
+  <ul class="collapse">
+  <li><a href="#postgresql" id="toc-postgresql" class="nav-link" data-scroll-target="#postgresql"><span class="header-section-number">5.2.1</span> Postgresql</a></li>
+  <li><a href="#mysql" id="toc-mysql" class="nav-link" data-scroll-target="#mysql"><span class="header-section-number">5.2.2</span> MySQL</a></li>
+  <li><a href="#sql-server-microsoft" id="toc-sql-server-microsoft" class="nav-link" data-scroll-target="#sql-server-microsoft"><span class="header-section-number">5.2.3</span> SQL Server, Microsoft</a></li>
+  <li><a href="#oracle" id="toc-oracle" class="nav-link" data-scroll-target="#oracle"><span class="header-section-number">5.2.4</span> Oracle</a></li>
+  </ul></li>
+  <li><a href="#hybrid" id="toc-hybrid" class="nav-link" data-scroll-target="#hybrid"><span class="header-section-number">5.3</span> Hybrid</a>
+  <ul class="collapse">
+  <li><a href="#microsoft-access" id="toc-microsoft-access" class="nav-link" data-scroll-target="#microsoft-access"><span class="header-section-number">5.3.1</span> Microsoft Access</a></li>
+  <li><a href="#filemaker" id="toc-filemaker" class="nav-link" data-scroll-target="#filemaker"><span class="header-section-number">5.3.2</span> FileMaker</a></li>
+  </ul></li>
+  <li><a href="#cloud-native" id="toc-cloud-native" class="nav-link" data-scroll-target="#cloud-native"><span class="header-section-number">5.4</span> Cloud Native</a>
+  <ul class="collapse">
+  <li><a href="#snowflake" id="toc-snowflake" class="nav-link" data-scroll-target="#snowflake"><span class="header-section-number">5.4.1</span> Snowflake</a></li>
+  <li><a href="#google" id="toc-google" class="nav-link" data-scroll-target="#google"><span class="header-section-number">5.4.2</span> Google</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -174,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">About</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Database Engines</span></h1>
 </div>
 
 
@@ -189,24 +209,86 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1.</p>
-<section id="list-of-technology-used" class="level3" data-number="2.0.1">
-<h3 data-number="2.0.1" class="anchored" data-anchor-id="list-of-technology-used"><span class="header-section-number">2.0.1</span> List of Technology Used:</h3>
-<p>Quarto: https://quarto.org markdown with active code blocks, used to write this book.</p>
-<p>SQLite: https://sqlite.org/index.html</p>
-<p>DuckDB: NextGen Analytical Database : https://duckdb.org</p>
-<p>R API for DuckDB : https://duckdb.org/docs/api/r.html</p>
-<p>SQLDF : https://github.com/ggrothendieck/sqldf an R package for easily running SQL statements on R data frames</p>
-<p>Most R-Database packages are based on the the R DBI interface:</p>
-<p>https://cran.r-project.org/web/packages/DBI/index.html</p>
-<p>Quarto SQL extension for SQLite: https://github.com/shafayetShafee/interactive-sql (and SQLite only)</p>
-<p>R dbPlyr: https://dbplyr.tidyverse.org the database backend for <a href="https://dplyr.tidyverse.org">dplyr</a>. This library is not SQL, but it is another approach to pulling data from tabular data.</p>
+<p>The ‘engine’ of the database is the heart of the server or library software. For definition, see chapter <a href="./what_is_db_sw.html">Database Software</a>. We are categorizing engines into in-process, server, hybrid, and cloud.</p>
+<section id="in-process-database-engines" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="in-process-database-engines"><span class="header-section-number">5.1</span> In-Process Database Engines</h2>
+<p>An ‘in-process’ engine is a sofware library you can use on your computer with your existing program. There is no server required, and all computation runs on your computer.</p>
+<section id="sqlite" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="sqlite"><span class="header-section-number">5.1.1</span> SQLite</h3>
+<p>the mother of in-process db and the most ubiquotous db software in the world</p>
+<section id="why-use" class="level4" data-number="5.1.1.1">
+<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="why-use"><span class="header-section-number">5.1.1.1</span> Why use?</h4>
+<ul>
+<li>You like SQL but don’t have a server</li>
+<li>you want to keep multiple tabular data sets in a single file</li>
+<li>you need something lightweight</li>
+<li>you’ve been given a SQLite3 file</li>
+<li>you are not working in a team that needs concurrent access to edit data</li>
+<li>you want to use a <a href="https://www.dataduel.co/modern-data-stack-in-a-box-with-duckdb/">“Modern Data Stack (MDS) in-a-box”</a></li>
+</ul>
 </section>
-<section id="how-the-technology-above-is-used" class="level3" data-number="2.0.2">
-<h3 data-number="2.0.2" class="anchored" data-anchor-id="how-the-technology-above-is-used"><span class="header-section-number">2.0.2</span> How the technology above is used:</h3>
-<p>to be written…</p>
+</section>
+<section id="duckdb" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="duckdb"><span class="header-section-number">5.1.2</span> DuckDB</h3>
+<p>OMG this is so fast.</p>
+<section id="why-use-1" class="level4" data-number="5.1.2.1">
+<h4 data-number="5.1.2.1" class="anchored" data-anchor-id="why-use-1"><span class="header-section-number">5.1.2.1</span> Why Use?</h4>
+<ul>
+<li>you are only doing OLAP or data processing (<code>select</code>)</li>
+<li>you have a really large data set</li>
+<li>you like cutting edge things</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="server-database-engines" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="server-database-engines"><span class="header-section-number">5.2</span> Server Database Engines</h2>
+<p>These use the client-server computing model invented in the 1960s that we use every day. note can run a server on your laptop for a party of 1.</p>
+<section id="postgresql" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="postgresql"><span class="header-section-number">5.2.1</span> Postgresql</h3>
+<p>research leader but complicated Open Source</p>
+</section>
+<section id="mysql" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="mysql"><span class="header-section-number">5.2.2</span> MySQL</h3>
+<p>used by many web sites and easier to set up</p>
+<p>Open Source</p>
+</section>
+<section id="sql-server-microsoft" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="sql-server-microsoft"><span class="header-section-number">5.2.3</span> SQL Server, Microsoft</h3>
+<p>Commercial but free for many types of usage.</p>
+</section>
+<section id="oracle" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="oracle"><span class="header-section-number">5.2.4</span> Oracle</h3>
+<p>comprehensive. Expensive. Enterprise. Stay away.</p>
+<p>The Extension to SQL are amazing I’ve use Oracle on a few projects and then</p>
+</section>
+</section>
+<section id="hybrid" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="hybrid"><span class="header-section-number">5.3</span> Hybrid</h2>
+<p>Ok 3 types. these are database that can be used in-process but are known for their desktop applications, written when we all used desktop applications (e.g before Google Docs).</p>
+<section id="microsoft-access" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="microsoft-access"><span class="header-section-number">5.3.1</span> Microsoft Access</h3>
+<p>super easy to get into, shareable using a Windows network</p>
+<p>Windows only</p>
+</section>
+<section id="filemaker" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="filemaker"><span class="header-section-number">5.3.2</span> FileMaker</h3>
+<p>kind of morphing to something else.</p>
+</section>
+</section>
+<section id="cloud-native" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="cloud-native"><span class="header-section-number">5.4</span> Cloud Native</h2>
+<p>These are database that you can only use via the cloud and will never be a product you can run on your own. Note that almost all of the database above also offer a ‘cloud’ version of their software where they run a server for you so how is this different? These DBs were designed and offered only as cloud services.</p>
+<p>Some of these were built to manage</p>
+<section id="snowflake" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="snowflake"><span class="header-section-number">5.4.1</span> Snowflake</h3>
+<p>Entprise. Competes with Oracle. commercial. never used it.</p>
+</section>
+<section id="google" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="google"><span class="header-section-number">5.4.2</span> Google</h3>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -445,13 +527,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What they forgot to teach you about SQL: introduction</span></span>
+      <a href="./quick_sqldf_demo.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Quickest Intro Ever</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./what_is_db_sw.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">what is database software</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./db_services.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">database services</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

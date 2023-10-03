@@ -11,7 +11,7 @@
     "href": "about.html",
     "title": "2  About",
     "section": "",
-    "text": "This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1."
+    "text": "This book created by Patrick Bills in 2023 based on experience using databases and SQL since 1986 in an academic environment, starting with dBase III on MS-DOS 3.1.\n\n2.0.1 List of Technology Used:\nQuarto: https://quarto.org markdown with active code blocks, used to write this book.\nSQLite: https://sqlite.org/index.html\nDuckDB: NextGen Analytical Database : https://duckdb.org\nR API for DuckDB : https://duckdb.org/docs/api/r.html\nSQLDF : https://github.com/ggrothendieck/sqldf an R package for easily running SQL statements on R data frames\nMost R-Database packages are based on the the R DBI interface:\nhttps://cran.r-project.org/web/packages/DBI/index.html\nQuarto SQL extension for SQLite: https://github.com/shafayetShafee/interactive-sql (and SQLite only)\nR dbPlyr: https://dbplyr.tidyverse.org the database backend for dplyr. This library is not SQL, but it is another approach to pulling data from tabular data.\n\n\n2.0.2 How the technology above is used:\nto be written…"
   },
   {
     "objectID": "what_is_db_sw.html",
@@ -28,31 +28,108 @@
     "text": "This is a very fast and short demo of SQL select statements using an existing data set. .\nLet’s demonstrate how to use SQL on dataframe that comes with R: warpbreaks (doc). Here is what that data look like:\n\nknitr::kable(head(warpbreaks))\n\n\n\n\nbreaks\nwool\ntension\n\n\n\n\n26\nA\nL\n\n\n30\nA\nL\n\n\n54\nA\nL\n\n\n25\nA\nL\n\n\n70\nA\nL\n\n\n52\nA\nL\n\n\n\n\n\nThere is this awesome package that lets you use SQL statements directly on a data frame, no setup or any other changes are needed. You just need to install.packages('sqldf') The function sqldf() takes a string that is a SQL statement that uses an existing data frame as the table name. You don’t need to know this, but the secret of sqldf is that is silently creates and uses the dataframe in a sqlite3 database.\nSQL has several commands, the the SELECT is most widely used and does what it says: selects columns of data from a table and orders or groups the results.\nHere is the the SQL command equivlant to R’s head() function,using the name of a dataframe that is in the environment already\n\nsqldf(\"SELECT breaks, wool, tension FROM warpbreaks LIMIT 6\")\n\n  breaks wool tension\n1     26    A       L\n2     30    A       L\n3     54    A       L\n4     25    A       L\n5     70    A       L\n6     52    A       L\n\n\nNote that here we are using capitalization for all SQL words only so that they are easier to read. SQL is not case sensitive. However the column and table names ARE case sensitive for some database flavors, so always use the same case, or even better, always use lower case when creating tables and the table column names (variables), don’t use mixed case.\nsince there are a million tutorials on sql, let’s jump straight into a summarization technique.\nWhat kinds of wool are there and how many rows for each kind in the warpbreaks data frame?\n\nsql&lt;- \"SELECT wool, COUNT(wool) as n FROM warpbreaks GROUP BY wool\"\nsqldf(sql)\n\n  wool  n\n1    A 27\n2    B 27\n\n\nOk, two kinds of wool and a small dataset. Note that GROUP BY may also sort. This dataset has a count of breaks and so naturally we may want to know What is the total of breaks per type of wool in warpbreaks? Again, the sqldf() function takes a string that’s a swl command. So in the code below, I’ve taken time to create a string variable that is a SQL statement, formatted that string in the code so it’s really readable, and then use sent the sql string to the sqldf() command. You don’t have to do it that way, it’s just easier to read for this demo. SQL ignores all whitespace other than single spaces.\n\nsql&lt;- \"SELECT \n          wool as 'wool type', \n          sum(breaks) as 'total breaks', \n          count(wool) as n \n      FROM warpbreaks \n      GROUP BY wool\n\"\n\nbreak_summary &lt;- sqldf(sql)\nknitr::kable(break_summary)\n\n\nWarp Break Summary \n\n\n\n\n\n\n\nwool type\ntotal breaks\nn\n\n\n\n\nA\n838\n27\n\n\nB\n682\n27\n\n\n\n\n\nSo far, SQL does not seem any more capable than Pandas (for Python) or dplyr, data.tables or other R libs, does it?? And as a language, maybe it isn’t. The real power is with Joins and that will require a more advanced data set."
   },
   {
+    "objectID": "db_engines.html#in-process-database-engines",
+    "href": "db_engines.html#in-process-database-engines",
+    "title": "5  Database Engines",
+    "section": "5.1 In-Process Database Engines",
+    "text": "5.1 In-Process Database Engines\nAn ‘in-process’ engine is a sofware library you can use on your computer with your existing program. There is no server required, and all computation runs on your computer.\n\n5.1.1 SQLite\nthe mother of in-process db and the most ubiquotous db software in the world\n\n5.1.1.1 Why use?\n\nYou like SQL but don’t have a server\nyou want to keep multiple tabular data sets in a single file\nyou need something lightweight\nyou’ve been given a SQLite3 file\nyou are not working in a team that needs concurrent access to edit data\nyou want to use a “Modern Data Stack (MDS) in-a-box”\n\n\n\n\n5.1.2 DuckDB\nOMG this is so fast.\n\n5.1.2.1 Why Use?\n\nyou are only doing OLAP or data processing (select)\nyou have a really large data set\nyou like cutting edge things"
+  },
+  {
+    "objectID": "db_engines.html#server-database-engines",
+    "href": "db_engines.html#server-database-engines",
+    "title": "5  Database Engines",
+    "section": "5.2 Server Database Engines",
+    "text": "5.2 Server Database Engines\nThese use the client-server computing model invented in the 1960s that we use every day. note can run a server on your laptop for a party of 1.\n\n5.2.1 Postgresql\nresearch leader but complicated Open Source\n\n\n5.2.2 MySQL\nused by many web sites and easier to set up\nOpen Source\n\n\n5.2.3 SQL Server, Microsoft\nCommercial but free for many types of usage.\n\n\n5.2.4 Oracle\ncomprehensive. Expensive. Enterprise. Stay away.\nThe Extension to SQL are amazing I’ve use Oracle on a few projects and then"
+  },
+  {
+    "objectID": "db_engines.html#hybrid",
+    "href": "db_engines.html#hybrid",
+    "title": "5  Database Engines",
+    "section": "5.3 Hybrid",
+    "text": "5.3 Hybrid\nOk 3 types. these are database that can be used in-process but are known for their desktop applications, written when we all used desktop applications (e.g before Google Docs).\n\n5.3.1 Microsoft Access\nsuper easy to get into, shareable using a Windows network\nWindows only\n\n\n5.3.2 FileMaker\nkind of morphing to something else."
+  },
+  {
+    "objectID": "db_engines.html#cloud-native",
+    "href": "db_engines.html#cloud-native",
+    "title": "5  Database Engines",
+    "section": "5.4 Cloud Native",
+    "text": "5.4 Cloud Native\nThese are database that you can only use via the cloud and will never be a product you can run on your own. Note that almost all of the database above also offer a ‘cloud’ version of their software where they run a server for you so how is this different? These DBs were designed and offered only as cloud services.\nSome of these were built to manage\n\n5.4.1 Snowflake\nEntprise. Competes with Oracle. commercial. never used it.\n\n\n5.4.2 Google"
+  },
+  {
     "objectID": "db_services.html#httpsstackby.com",
     "href": "db_services.html#httpsstackby.com",
-    "title": "5  database services",
-    "section": "5.1 https://stackby.com",
-    "text": "5.1 https://stackby.com\n\nhides database implementation, focuses on no-code use for tabular data\nforms creation!\nmany other features\nfree tier is too limited for most research data"
+    "title": "6  database services",
+    "section": "6.1 https://stackby.com",
+    "text": "6.1 https://stackby.com\n\nhides database implementation, focuses on no-code use for tabular data\nforms creation!\nmany other features\nfree tier is too limited for most research data"
   },
   {
     "objectID": "db_services.html#httpswww.elephantsql.com",
     "href": "db_services.html#httpswww.elephantsql.com",
-    "title": "5  database services",
-    "section": "5.2 https://www.elephantsql.com",
-    "text": "5.2 https://www.elephantsql.com\n“PostgreSQL as a Service. Perfectly configured and optimized PostgreSQL databases ready in 2 minutes.”\nThis company does one thing and does it well: Postgresql. It provides very little interface to the db, but you avoid running any kind of server but get all the power of Postgresql\n\nfeatures: backups and monitoring\napi for creating instances (useful for devops or other auto-provisioning scripts)"
+    "title": "6  database services",
+    "section": "6.2 https://www.elephantsql.com",
+    "text": "6.2 https://www.elephantsql.com\n“PostgreSQL as a Service. Perfectly configured and optimized PostgreSQL databases ready in 2 minutes.”\nThis company does one thing and does it well: Postgresql. It provides very little interface to the db, but you avoid running any kind of server but get all the power of Postgresql\n\nfeatures: backups and monitoring\napi for creating instances (useful for devops or other auto-provisioning scripts)"
   },
   {
     "objectID": "db_services.html#httpsaiven.io",
     "href": "db_services.html#httpsaiven.io",
-    "title": "5  database services",
-    "section": "5.3 https://aiven.io",
-    "text": "5.3 https://aiven.io\nthis company creates services for several data systems including RDBMS Mysql and Postgresql. The free tier gives you a decent sized VM for a small workgroup and 5gb of storage. If you have a 50 column table with decent size columns (255 b/column) 1 gb of storage can hold almost 100,000 rows."
+    "title": "6  database services",
+    "section": "6.3 https://aiven.io",
+    "text": "6.3 https://aiven.io\nthis company creates services for several data systems including RDBMS Mysql and Postgresql. The free tier gives you a decent sized VM for a small workgroup and 5gb of storage. If you have a 50 column table with decent size columns (255 b/column) 1 gb of storage can hold almost 100,000 rows."
   },
   {
     "objectID": "db_services.html#httpsmotherduck.com",
     "href": "db_services.html#httpsmotherduck.com",
-    "title": "5  database services",
-    "section": "5.4 https://motherduck.com",
-    "text": "5.4 https://motherduck.com\nThis is an interesting case and very very new. It is based on a new, open source database engine called https://duckdb.org. Duckdb seems like the ultimate replacement for SQLite3,but it’s much more. It is unbelievably fast for querying huge data sets. Motherduck provides yuo with some storage space to upload files and create database out of them, and a shared notebook-like environment to run sql queries. If you are already familar with notebooks (e.g. Jupyter notebooks), this may be the one to use!\n\ndata entry? no\ndata injecst: yes"
+    "title": "6  database services",
+    "section": "6.4 https://motherduck.com",
+    "text": "6.4 https://motherduck.com\nThis is an interesting case and very very new. It is based on a new, open source database engine called https://duckdb.org. Duckdb seems like the ultimate replacement for SQLite3,but it’s much more. It is unbelievably fast for querying huge data sets. Motherduck provides yuo with some storage space to upload files and create database out of them, and a shared notebook-like environment to run sql queries. If you are already familar with notebooks (e.g. Jupyter notebooks), this may be the one to use!\n\ndata entry? no\ndata injecst: yes"
+  },
+  {
+    "objectID": "primary_keys.html#about-primary-keys-for-database-design",
+    "href": "primary_keys.html#about-primary-keys-for-database-design",
+    "title": "7  primary key",
+    "section": "7.1 About Primary Keys for database design",
+    "text": "7.1 About Primary Keys for database design\nSQL databases have tables, and a major feature of these tables is that one (or more) columns (aka fields) are ‘keys’ to the rows in the datbase. Given the values for the key, you can find the exactly one row that matches. For example, bank account number refers to only one bank account. Bank account and bank account number have 1-1 relationship. That would work for an ‘accounts’ table, but not for a table of transactions where the account number appears multiple times, or for a people table, where an account could be shared.\nThe primary key the one key used by the db to indentify the table. Most tables have a primary key. It’s not required, but a table is harder to work with (and often slower) if there is no primary key.\nMost databases, tutorials, and database auto-creation software with always create a new special field in a table called “id” and make that field have a sequence number. More why later, but go with that. For now a"
+  },
+  {
+    "objectID": "primary_keys.html#motivating-example",
+    "href": "primary_keys.html#motivating-example",
+    "title": "7  primary key",
+    "section": "7.2 Motivating Example",
+    "text": "7.2 Motivating Example\n\nSELECT first_name, last_name, job_id \nFROM employees \nWHERE salary &gt; 10000\nLIMIT 10;\n\nOk but what are the jobs that pay? The database was designed to join employees to jobs using a job_id. Let’s join the tables and see.\n\nSELECT employees.first_name, employees.last_name, jobs.job_title, jobs.job_id\nFROM \n   employees INNER JOIN jobs \n   ON employees.job_id = jobs.job_id\nWHERE salary &gt; 10000\nLIMIT 10;\n\nSome important things to note here.\n\njob_id appears in two tables, so we must prepend the field name with the table name table.field. Most SQL will deal if you don’t include the table names but if it’s ambiguous (as in this example) if will not run with varioubs rns\nThe job id is the key for the table not has no meaning. Note that is not sequential. President is job_id 4, Accounting Manager is job_id 2. The ‘job_id’ in jobs table is what we call the ‘key’ and in fact the main key so we call it the ‘primary key’\n\n\n7.2.1 It’s really hard to change a primary key after the fact\nDatabases can quickly have 10, a dozen, then a couple of dozen tables, joined in various ways. Any time you have to change the value of a primary key, you must change the values of all of the foreign keys or linked tables. that is frequently a manual process to be avoided. Read below for ways to avoid.\n\n\n7.2.2 Scale your primary key well.\nSometimes numeric IDs have a starting value so it doesn’ve leading zeros, like 10000001. This can really help wiht printing since the output always takes up the same amount of space (on a label for example). If these are always numbers the maximum number of records in this example would be just shy of 100 million (99,999,999). Is that enough records for that table? If not we could later convert to alpha-number and start using letters for numbers, or do what my university did, and add a letter at the front. For example A99999999, and now you have 26 * 100 Million or 2.6 billion. that will hold off obsolences- for a while. Finding all the places where that ID is used in table and changing to have a letter in the front is a daunting task for a reasonably complex database.\n\nCase study: Pollinator database. I designed a DB that 5 digit ID, 99,999 possible values for printing on a teeny tiny insect pin label. The project was supposed to last one, maybe 3 years I assumed or maybe was told? How many bees could they pin? Six years later they called me when the 100,000 bee was collected and the labels no longer printed correctly. The database was MySQL and the design (schema) used MySQL type ’bigint’for primary keys, which went could hold 264 values. the database didn’t run out of IDs, they did run out of space on the label.\n\n\n\n7.2.3 Primary Keys should have no meaning\nIt’s important that primary keys have no meaning. That is so they are never changed. The only function of a key is to join two tables together. A primary key could be some randome number as long it was guaranteed to be unique in that table. We can’t have two job_ids = 2. We pick a unique number when we insert new records. Jobs are added as we think of them at first, or when they are created for the company. One easy way to make them unique is to use a sequence generator, and pick the next highest number in the sequence.\n\n7.2.3.1 Deleting a record form a primary key table\nIf a job is deleted then employees with that job_id now points to nothing. Not good and could possibly crash whatever app or script uses that database. We will call the table with the primary key the ‘primary table’ and others the linked tables. The process is\n\nidentify all the tables that link to the pirmary table, call them linked tables\nin each linked table, find all the records that use the key you want to delete. For example, if deleting job_id = 4, find all records that have thie\nchange those keys to something else. Some database designs do not allow blank foreign keys. All employees have to have a job, why would it ever be blank? if that something does not exist yet, there could be a problem on a production database. If you only want to edit the primate key (not delete the records), one way to deal with that is to create a temporary item with a dummy key 0000 “job placeholder.” Another way is to set the job_id blank (Null).\nNow that all the foreign keys are no longer pointing to that primary key value, you can change it to whatever you need to\nupdate all the foreign keys to point to that number.\n\nwhy not just change the key then change all the records? this violates referential integrity and if the database is being used (for example in production) that would be a problem."
+  },
+  {
+    "objectID": "example_cloudiest_us_cities.html",
+    "href": "example_cloudiest_us_cities.html",
+    "title": "8  Example: Which are the cloudiest cities in the US?",
+    "section": "",
+    "text": "This is a walk through of a case-study for determining a problem/question, designing the database to answer the question, pulling data into a database, and answering the question.\nI often hear that my city (Lansing, MI) is 2nd cloudiest in teh country. Then I heard the same thing from another city (I don’t recall which). who doesn’t like a sunny day? So which are the cloudiest cities in the country?\n\n8.0.1 Data Sources\nAwesome Cities data: https://github.com/kelvins/US-Cities-Database\nWeather data via Python https://github.com/meteostat/meteostat-python provide via Creative Commons Attribution-NonCommercial 4.0 International Public License (CC BY-NC 4.0). Blog post on MeteoStat\n\n\n8.0.2 Download and manage\nTBW"
+  },
+  {
+    "objectID": "research_db_case_studies.html#background",
+    "href": "research_db_case_studies.html#background",
+    "title": "9  RDBMS Case Studies",
+    "section": "9.1 Background",
+    "text": "9.1 Background\nHow will you know if a relational database management system (RDBMS) is right for your project? Academics tend to adopt what they see working with their colleagues. Hence the following are short description database the author worked with, or projects the author(s) have been a part of that use datbases and the SQL language to manage their data."
+  },
+  {
+    "objectID": "research_db_case_studies.html#portal-db",
+    "href": "research_db_case_studies.html#portal-db",
+    "title": "9  RDBMS Case Studies",
+    "section": "9.2 Portal DB",
+    "text": "9.2 Portal DB\nDB available to download that is used for teaching.\n\nsource:\nreferences:"
+  },
+  {
+    "objectID": "research_db_case_studies.html#mara-hyena-project",
+    "href": "research_db_case_studies.html#mara-hyena-project",
+    "title": "9  RDBMS Case Studies",
+    "section": "9.3 Mara Hyena Project",
+    "text": "9.3 Mara Hyena Project\nhttps://www.holekamplab.org/project-database.html"
+  },
+  {
+    "objectID": "research_db_case_studies.html#project-avocet",
+    "href": "research_db_case_studies.html#project-avocet",
+    "title": "9  RDBMS Case Studies",
+    "section": "9.4 Project AVoCet",
+    "text": "9.4 Project AVoCet\nhttps://avocet.integrativebiology.natsci.msu.edu"
   }
 ]

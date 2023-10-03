@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What they Forgot to teach about SQL - 5&nbsp; database services</title>
+<title>What they Forgot to teach about SQL - 6&nbsp; database services</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quick_sqldf_demo.html" rel="prev">
+<link href="./primary_keys.html" rel="next">
+<link href="./db_engines.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./db_services.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">database services</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./db_services.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">database services</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -102,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What they forgot to teach you about SQL: introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -125,8 +126,32 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./db_engines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Database Engines</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./db_services.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">database services</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">database services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./primary_keys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">primary key</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./example_cloudiest_us_cities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Example: Which are the cloudiest cities in the US?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./research_db_case_studies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">RDBMS Case Studies</span></span></a>
   </div>
 </li>
     </ul>
@@ -139,10 +164,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#httpsstackby.com" id="toc-httpsstackby.com" class="nav-link active" data-scroll-target="#httpsstackby.com"><span class="header-section-number">5.1</span> https://stackby.com</a></li>
-  <li><a href="#httpswww.elephantsql.com" id="toc-httpswww.elephantsql.com" class="nav-link" data-scroll-target="#httpswww.elephantsql.com"><span class="header-section-number">5.2</span> https://www.elephantsql.com</a></li>
-  <li><a href="#httpsaiven.io" id="toc-httpsaiven.io" class="nav-link" data-scroll-target="#httpsaiven.io"><span class="header-section-number">5.3</span> https://aiven.io</a></li>
-  <li><a href="#httpsmotherduck.com" id="toc-httpsmotherduck.com" class="nav-link" data-scroll-target="#httpsmotherduck.com"><span class="header-section-number">5.4</span> https://motherduck.com</a></li>
+  <li><a href="#httpsstackby.com" id="toc-httpsstackby.com" class="nav-link active" data-scroll-target="#httpsstackby.com"><span class="header-section-number">6.1</span> https://stackby.com</a></li>
+  <li><a href="#httpswww.elephantsql.com" id="toc-httpswww.elephantsql.com" class="nav-link" data-scroll-target="#httpswww.elephantsql.com"><span class="header-section-number">6.2</span> https://www.elephantsql.com</a></li>
+  <li><a href="#httpsaiven.io" id="toc-httpsaiven.io" class="nav-link" data-scroll-target="#httpsaiven.io"><span class="header-section-number">6.3</span> https://aiven.io</a></li>
+  <li><a href="#httpsmotherduck.com" id="toc-httpsmotherduck.com" class="nav-link" data-scroll-target="#httpsmotherduck.com"><span class="header-section-number">6.4</span> https://motherduck.com</a></li>
   </ul>
 </nav>
     </div>
@@ -151,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">database services</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">database services</span></h1>
 </div>
 
 
@@ -167,8 +192,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>There are many software platform and now services to help you build a database and sometimes relational. The challenge with many of these is they make have a low-code environment but that cvan make it</p>
-<section id="httpsstackby.com" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="httpsstackby.com"><span class="header-section-number">5.1</span> https://stackby.com</h2>
+<section id="httpsstackby.com" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="httpsstackby.com"><span class="header-section-number">6.1</span> https://stackby.com</h2>
 <ul>
 <li>hides database implementation, focuses on no-code use for tabular data</li>
 <li>forms creation!</li>
@@ -176,8 +201,8 @@ ul.task-list li input[type="checkbox"] {
 <li>free tier is too limited for most research data</li>
 </ul>
 </section>
-<section id="httpswww.elephantsql.com" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="httpswww.elephantsql.com"><span class="header-section-number">5.2</span> https://www.elephantsql.com</h2>
+<section id="httpswww.elephantsql.com" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="httpswww.elephantsql.com"><span class="header-section-number">6.2</span> https://www.elephantsql.com</h2>
 <p>“PostgreSQL as a Service. Perfectly configured and optimized PostgreSQL databases ready in 2 minutes.”</p>
 <p>This company does one thing and does it well: Postgresql. It provides very little interface to the db, but you avoid running any kind of server but get all the power of Postgresql</p>
 <ul>
@@ -185,12 +210,12 @@ ul.task-list li input[type="checkbox"] {
 <li>api for creating instances (useful for devops or other auto-provisioning scripts)</li>
 </ul>
 </section>
-<section id="httpsaiven.io" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="httpsaiven.io"><span class="header-section-number">5.3</span> https://aiven.io</h2>
+<section id="httpsaiven.io" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="httpsaiven.io"><span class="header-section-number">6.3</span> https://aiven.io</h2>
 <p>this company creates services for several data systems including RDBMS Mysql and Postgresql. The free tier gives you a decent sized VM for a small workgroup and 5gb of storage. If you have a 50 column table with decent size columns (255 b/column) 1 gb of storage can hold almost 100,000 rows.</p>
 </section>
-<section id="httpsmotherduck.com" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="httpsmotherduck.com"><span class="header-section-number">5.4</span> https://motherduck.com</h2>
+<section id="httpsmotherduck.com" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="httpsmotherduck.com"><span class="header-section-number">6.4</span> https://motherduck.com</h2>
 <p>This is an interesting case and very very new. It is based on a new, open source database engine called https://duckdb.org. Duckdb seems like the ultimate replacement for SQLite3,but it’s much more. It is unbelievably fast for querying huge data sets. Motherduck provides yuo with some storage space to upload files and create database out of them, and a shared notebook-like environment to run sql queries. If you are already familar with notebooks (e.g.&nbsp;Jupyter notebooks), this may be the one to use!</p>
 <ul>
 <li>data entry? no</li>
@@ -436,11 +461,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./quick_sqldf_demo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Quickest Intro Ever</span></span>
+      <a href="./db_engines.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Database Engines</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./primary_keys.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">primary key</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
